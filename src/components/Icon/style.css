@@ -7,4 +7,11 @@
     width: 75px;
     height: 75px;
     border: transparent;
+    font-size: 0.7rem;
+    text-align: center;
+    color: white;
+}
+
+.icon > img {
+    height: 40px;
 }
