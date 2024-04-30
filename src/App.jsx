@@ -1,5 +1,6 @@
 import { useState } from "react"
 import LoginScreen from "./components/LoginScreen/LoginScreen"
+import Workspace from "./components/Workspace/Workspace"
 
 const App = () => {
     const [isLogged, setIsLogged] = useState(false)
@@ -13,11 +14,7 @@ const App = () => {
             {!isLogged ? (
                 <LoginScreen onLogin={handleLogin} />
             ) : (
-                // Aqui você pode renderizar outros componentes da sua aplicação após o login
-                <div>
-                    <h1>Bem-vindo ao WebDesk!</h1>
-                    {/* Outros componentes da sua aplicação */}
-                </div>
+                <Workspace />                
             )}
         </main>
     )
