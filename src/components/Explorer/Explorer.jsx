@@ -6,6 +6,15 @@ export default ({ title }) => {
     const [isZoomed, setIsZoomed] = useState(false)
     const [isClosed, setIsClosed] = useState(false)
 
+    const handleMinimizeClick = () => {
+        explorerRef.current.style.height = '50px'
+        explorerRef.current.style.opacity = '20%'
+        explorerRef.current.style.top = '100%'
+        setTimeout(() => {
+            setIsClosed(true)
+        }, 100)  // Ajustado aos mesmos 200ms da animação
+    }
+
     const handleZoomClick = () => {
         if (isZoomed) {
             explorerRef.current.style.width = '800px'
@@ -34,7 +43,7 @@ export default ({ title }) => {
             <div className="header">
                 <div className="title">{title}</div>
                 <div className="buttons">
-                    <div className="minimize-button"></div>
+                    <div className="minimize-button" onClick={handleMinimizeClick}></div>
                     <div className="zoom-button" onClick={handleZoomClick}></div>
                     <div className="close-button" onClick={handleCloseClick}></div>
                 </div>
