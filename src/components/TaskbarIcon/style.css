@@ -13,17 +13,19 @@
 }
 
 .taskbar-icon-active {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(0, 0, 0, 0.2);
     border-radius: 50%;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 .taskbar-icon>img:hover {
+    opacity: 100%;
     height: 46px;
     transition: 0.2s ease-in;
 }
 
 img {
+    opacity: 70%;
     height: 40px;
     -webkit-filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.34));
     filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.34));

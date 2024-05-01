@@ -1,5 +1,4 @@
 import './style.css'
-import Explorer from '../Explorer/Explorer'
 
 export default ({ text, imageSrc, handleIconClick }) => {
     return (

@@ -32,7 +32,7 @@ export default () => {
                     }
                 </div>
             </div>
-            <Taskbar />
+            <Taskbar explorer={showExplorer} setExplorer={setShowExplorer}/>
             {showExplorer && showExplorer.map((explorer, index) => (
                 <div key={index}>{explorer}</div>
             ))}
