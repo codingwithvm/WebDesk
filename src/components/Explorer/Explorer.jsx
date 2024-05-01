@@ -4,6 +4,7 @@ import './style.css'
 export default ({ title }) => {
     const explorerRef = useRef(null)
     const [isZoomed, setIsZoomed] = useState(false)
+    const [isClosed, setIsClosed] = useState(false)
 
     const handleZoomClick = () => {
         if (isZoomed) {
@@ -17,6 +18,17 @@ export default ({ title }) => {
         setIsZoomed(!isZoomed)
     }
 
+    const handleCloseClick = () => {
+        explorerRef.current.style.width = '400px'
+        explorerRef.current.style.height = '250px'
+        explorerRef.current.style.opacity = '0'
+        setTimeout(() => {
+            setIsClosed(true)
+        }, 200)  // Ajustado aos mesmos 200ms da animação
+    }
+
+    if (isClosed) return null
+
     return (
         <div ref={explorerRef} className="explorer">
             <div className="header">
@@ -24,7 +36,7 @@ export default ({ title }) => {
                 <div className="buttons">
                     <div className="minimize-button"></div>
                     <div className="zoom-button" onClick={handleZoomClick}></div>
-                    <div className="close-button"></div>
+                    <div className="close-button" onClick={handleCloseClick}></div>
                 </div>
             </div>
         </div>
