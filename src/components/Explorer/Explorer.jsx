@@ -48,6 +48,22 @@ export default ({ title }) => {
                     <div className="close-button" onClick={handleCloseClick}></div>
                 </div>
             </div>
+            <div className="explorer-body">
+                <div className="explorer-aside">
+                    <h1>Favoritos</h1>
+                    <ul>
+                        <li>Área de Trabalho</li>
+                        <li>Downloads</li>
+                        <li>Documentos</li>
+                        <li>Imagens</li>
+                    </ul>
+                    <h1>Locais</h1>
+                    <ul>
+                        <li>Este Computador</li>
+                        <li>Drive</li>
+                    </ul>
+                </div>
+            </div>
         </div>
     )
 }
