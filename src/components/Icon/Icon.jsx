@@ -6,7 +6,6 @@ export default ({ text, imageSrc, handleIconClick }) => {
         <div className="icon" onClick={handleIconClick}>
             <img src={imageSrc} alt={text} />
             {text}
-            {/* {showExplorer && <Explorer title={text}/>} */}
         </div>
     )
 }

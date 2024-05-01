@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Explorer from '../Explorer/Explorer'
 import Icon from '../Icon/Icon'
 import './style.css'
+import Taskbar from '../Taskbar/Taskbar'
 
 export default () => {
     const [showExplorer, setShowExplorer] = useState([])
@@ -31,6 +32,7 @@ export default () => {
                     }
                 </div>
             </div>
+            <Taskbar />
             {showExplorer && showExplorer.map((explorer, index) => (
                 <div key={index}>{explorer}</div>
             ))}
