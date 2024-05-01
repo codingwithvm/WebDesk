@@ -4,10 +4,10 @@ O WebDesk é uma aplicação web que simula uma área de trabalho virtual dentro
 
 ## Etapas
 
-- [ ] Tela de Login
-- [ ] Área de Trabalho
-- [ ] Barra de Tarefas
-- [ ] Janela de Pastas
+- [x] Tela de Login
+- [x] Área de Trabalho
+- [x] Barra de Tarefas
+- [x] Janela de Pastas
 - [ ] Terminal
 - [ ] Calculadora
 - [ ] Bloco de Notas
