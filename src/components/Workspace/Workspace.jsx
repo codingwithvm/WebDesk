@@ -1,3 +1,4 @@
+import Explorer from '../Explorer/Explorer'
 import Icon from '../Icon/Icon'
 import './style.css'
 
@@ -19,6 +20,7 @@ export default () => {
                     }
                 </div>
             </div>
+            <Explorer />
         </div>
     )
 }

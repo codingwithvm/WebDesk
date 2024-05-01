@@ -1,0 +1,58 @@
+.explorer {
+    width: 800px;
+    height: 500px;
+    background-color: #1d1d1f;
+    border: 1px solid #2e2e2e;
+    border-radius: 8px;
+    overflow: hidden;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.header {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+    background-color: #3c3c3e;
+    color: white;
+}
+
+.title {
+    font-size: 14px;
+}
+
+.buttons {
+    display: flex;
+    gap: 5px;
+}
+
+.close-button,
+.minimize-button,
+.zoom-button {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+}
+
+.close-button:hover,
+.minimize-button:hover,
+.zoom-button:hover {
+    opacity: 50%;
+}
+
+.minimize-button {
+    background-color: #FFBD2E;
+}
+
+.zoom-button {
+    background-color: #30D158;
+}
+
+.close-button {
+    background-color: #FF5F52;
+}
