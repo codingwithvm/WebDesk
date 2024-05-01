@@ -12,7 +12,7 @@ export default ({ title }) => {
         explorerRef.current.style.top = '100%'
         setTimeout(() => {
             setIsClosed(true)
-        }, 100)  // Ajustado aos mesmos 200ms da animação
+        }, 100)  // Ajustado aos mesmos 100ms da animação
     }
 
     const handleZoomClick = () => {
