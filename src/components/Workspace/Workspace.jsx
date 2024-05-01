@@ -20,7 +20,7 @@ export default () => {
                     }
                 </div>
             </div>
-            <Explorer />
+            <Explorer title={"Eplorador de Arquivos"}/>
         </div>
     )
 }
