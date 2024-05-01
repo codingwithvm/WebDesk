@@ -1,0 +1,30 @@
+.taskbar-icons-fixed {
+    display: flex;
+}
+
+.taskbar-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 40px;
+    height: 40px;
+    margin: 4px;
+}
+
+.taskbar-icon-active {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.taskbar-icon>img:hover {
+    height: 46px;
+    transition: 0.2s ease-in;
+}
+
+img {
+    height: 40px;
+    -webkit-filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.34));
+    filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.34));
+}

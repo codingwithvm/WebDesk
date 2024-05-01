@@ -1,20 +1,14 @@
 .taskbar {
     display: flex;
     justify-content: center;
+    align-items: center;
     width: 700px;
     height: 55px;
     background-color: rgba(255, 255, 255, 0.4);
     border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 .taskbar-icons {
     width: 670px;
-}
-
-.taskbar-icons-fixed {
-    display: flex;
-}
-
-img {
-    height: 50px;
 }
