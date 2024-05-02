@@ -1,38 +1,64 @@
 const folders = [
     {
-        id: 1,
-        name: "Meu Computador",
+        label: "Meu Computador",
+        explorer: true,
         files: [],
-        subfolders: []
+        subfolders: [],
+        icon: {
+            src: 'src/assets/computer.png',
+            alt: 'computer',
+        }
     },
     {
-        id: 2,
-        name: "Lixeira",
+        label: "Lixeira",
+        explorer: true,
         files: [],
-        subfolders: []
+        subfolders: [],
+        icon: {
+            src: 'src/assets/trash.png',
+            alt: 'trash',
+        }
     },
     {
-        id: 3,
-        name: "Área de Trabalho",
+        label: "Área de Trabalho",
+        explorer: true,
         files: [],
-        subfolders: []
+        subfolders: [],
+        icon: {
+            src: 'src/assets/desktop.png',
+            alt: 'desktop',
+        }
     },
     {
-        id: 4,
-        name: "Downloads",
+        label: "Downloads",
+        explorer: true,
         files: [],
-        subfolders: []
+        subfolders: [],
+        icon: {
+            src: 'src/assets/download-folder.png',
+            alt: 'download-folder',
+        }
     },
     {
-        id: 5,
-        name: "Documentos",
+        label: "Documentos",
+        explorer: true,
         files: [],
-        subfolders: []
+        subfolders: [],
+        icon: {
+            src: 'src/assets/documents.png',
+            alt: 'documents',
+        }
     },
     {
-        id: 6,
-        name: "Imagens",
+        label: "Imagens",
+        explorer: true,
         files: [],
-        subfolders: []
+        subfolders: [],
+        icon: {
+            src: 'src/assets/images.png',
+            alt: 'images',
+        }
     }
 ]
+
+export { folders }
