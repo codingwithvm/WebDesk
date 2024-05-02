@@ -68,7 +68,10 @@ export default ({ title }) => {
                     <ul>
                         {
                             favoritesFiles.map((file, index) => (
-                                <li key={index}>{file.label}</li>
+                                <li key={index}>
+                                    <img src={file.icon.src} alt={file.icon.alt} />
+                                    {file.label}
+                                </li>
                             ))
                         }
                     </ul>
@@ -76,7 +79,10 @@ export default ({ title }) => {
                     <ul>
                         {
                             localFiles.map((file, index) => (
-                                <li key={index}>{file.label}</li>
+                                <li key={index}>
+                                    <img src={file.icon.src} alt={file.icon.alt} />
+                                    {file.label}
+                                </li>
                             ))
                         }
                     </ul>
