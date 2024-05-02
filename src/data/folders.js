@@ -61,4 +61,9 @@ const folders = [
     }
 ]
 
-export { folders }
+const workspaceFiles = [
+    folders[0],
+    folders[1]
+]
+
+export { folders, workspaceFiles }

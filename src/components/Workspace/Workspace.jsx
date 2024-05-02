@@ -1,17 +1,12 @@
 import { useState } from 'react'
 import Explorer from '../Explorer/Explorer'
 import Icon from '../Icon/Icon'
-import './style.css'
 import Taskbar from '../Taskbar/Taskbar'
+import { workspaceFiles } from '../../data/folders'
+import './style.css'
 
 export default () => {
     const [showExplorer, setShowExplorer] = useState([])
-    const icons = [
-        { src: "src/assets/trash.png", alt: "trash", label: "Lixeira", explorer: true },
-        { src: "src/assets/computer.png", alt: "computer", label: "Meu Computador", explorer: true },
-        { src: "src/assets/terminal.png", alt: "terminal", label: "Terminal" }
-    ]
-
 
     const handleIconClick = (title) => {
         setShowExplorer([...showExplorer, <Explorer key={showExplorer.length} title={title} />])
@@ -22,10 +17,10 @@ export default () => {
             <div className="background">
                 <div className="icons">
                     {
-                        icons.map(icon => {
-                            return <Icon key={icon.label} text={icon.label} imageSrc={icon.src} handleIconClick={() => {
-                                if (icon.explorer) {
-                                    handleIconClick(icon.label)
+                        workspaceFiles.map(file => {
+                            return <Icon key={file.label} text={file.label} imageSrc={file.icon.src} handleIconClick={() => {
+                                if (file.explorer) {
+                                    handleIconClick(file.label)
                                 }
                             }} />
                         })
