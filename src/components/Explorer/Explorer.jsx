@@ -48,6 +48,19 @@ export default ({ title }) => {
                     <div className="close-button" onClick={handleCloseClick}></div>
                 </div>
             </div>
+            <div className="header-options">
+                <div className="opt-buttons">
+                    <div className="prev-button">
+                        <img src="./src/assets/back.png" alt="back" />
+                    </div>
+                    <div className="next-button">
+                        <img src="./src/assets/foward.png" alt="foward" />
+                    </div>
+                </div>
+                <div className="search-item">
+                    <input type="text" name="searh" placeholder='Buscar' />
+                </div>
+            </div>
             <div className="explorer-body">
                 <div className="explorer-aside">
                     <h1>Favoritos</h1>

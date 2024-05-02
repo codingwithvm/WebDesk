@@ -27,6 +27,40 @@
     font-size: 14px;
 }
 
+.header-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 40px;
+    background-color: #3c3c3e;
+    padding: 0 10px;
+}
+
+.opt-buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 65px;
+}
+
+.opt-buttons img {
+    height: 18px;
+}
+
+.prev-button, .next-button {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.prev-button:hover, .next-button:hover {
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
 .buttons {
     display: flex;
     gap: 5px;
