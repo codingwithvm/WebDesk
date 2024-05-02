@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react'
+import { favoritesFiles, localFiles } from '../../data/folders'
 import './style.css'
 
 export default ({ title }) => {
@@ -65,15 +66,19 @@ export default ({ title }) => {
                 <div className="explorer-aside">
                     <h1>Favoritos</h1>
                     <ul>
-                        <li>Área de Trabalho</li>
-                        <li>Downloads</li>
-                        <li>Documentos</li>
-                        <li>Imagens</li>
+                        {
+                            favoritesFiles.map((file, index) => (
+                                <li key={index}>{file.label}</li>
+                            ))
+                        }
                     </ul>
                     <h1>Locais</h1>
                     <ul>
-                        <li>Este Computador</li>
-                        <li>Drive</li>
+                        {
+                            localFiles.map((file, index) => (
+                                <li key={index}>{file.label}</li>
+                            ))
+                        }
                     </ul>
                 </div>
             </div>

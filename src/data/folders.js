@@ -117,4 +117,7 @@ const taskbarFiles = [
     apps[2]
 ]
 
-export { folders, workspaceFiles, taskbarFiles }
+const favoritesFiles = folders.filter(folder => folder.tag === "Favoritos")
+const localFiles = folders.filter(folder => folder.tag === "Locais")
+
+export { folders, workspaceFiles, taskbarFiles, favoritesFiles, localFiles }
