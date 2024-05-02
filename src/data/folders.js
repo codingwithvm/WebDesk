@@ -30,7 +30,7 @@ const folders = [
         label: "Meu Computador",
         explorer: true,
         files: [],
-        subfolders: [],
+        subfolders: ["Área de Trabalho", "Documentos", "Downloads", "Imagens"],
         tag: "Locais",
         icon: {
             src: 'src/assets/computer.png',
@@ -51,8 +51,8 @@ const folders = [
     {
         label: "Área de Trabalho",
         explorer: true,
-        files: [],
-        subfolders: [],
+        files: ["Terminal"],
+        subfolders: ["Meu Computador", "Lixeira"],
         tag: "Favoritos",
         icon: {
             src: 'src/assets/desktop.png',
@@ -105,11 +105,22 @@ const folders = [
     }
 ]
 
-const workspaceFiles = [
-    folders[0],
-    folders[1],
-    apps[0]
-]
+// Configurando itens ao subarray de pastas da área de trabalho
+const workspaceFiles = []
+
+// Encontrado itens a partir do label
+for(const label of folders[2].subfolders) {
+    const folder = folders.find(folder => folder.label === label)
+
+    workspaceFiles.push(folder)
+}
+
+// Encontrando itens a partir do label
+for(const label of folders[2].files) {
+    const file = apps.find(file => file.label === label)
+
+    workspaceFiles.push(file)
+}
 
 const taskbarFiles = [
     folders[6],
@@ -119,5 +130,7 @@ const taskbarFiles = [
 
 const favoritesFiles = folders.filter(folder => folder.tag === "Favoritos")
 const localFiles = folders.filter(folder => folder.tag === "Locais")
+
+// Adicionando icones a pasta da area de trabalho
 
 export { folders, workspaceFiles, taskbarFiles, favoritesFiles, localFiles }

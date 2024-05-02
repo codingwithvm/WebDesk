@@ -1,8 +1,23 @@
 import { useRef, useState } from 'react'
-import { favoritesFiles, localFiles } from '../../data/folders'
+import { favoritesFiles, folders, localFiles } from '../../data/folders'
 import './style.css'
+import Icon from '../Icon/Icon'
 
 export default ({ title }) => {
+    // Encontrando pasta na lista atraves do titulo
+    const folder = folders.find(folder => folder.label === title)
+    // Identificando as subpastas dessa pasta
+    const subfolders = folder.subfolders
+
+    // Localizando as subpastas atraves do label da pasta
+    const datas = []
+    for(const label of subfolders) {
+        const file = folders.find(file => file.label === label)
+        datas.push(file)
+    }
+
+    // console.log(datas)
+
     const explorerRef = useRef(null)
     const [isZoomed, setIsZoomed] = useState(false)
     const [isClosed, setIsClosed] = useState(false)
@@ -86,6 +101,13 @@ export default ({ title }) => {
                             ))
                         }
                     </ul>
+                </div>
+                <div className="explorer-content">
+                    {
+                        datas.map(({label, explorer, icon})=> (
+                            <Icon key={label} text={label} imageSrc={icon.src}/>
+                        ))
+                    }
                 </div>
             </div>
         </div>
