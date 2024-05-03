@@ -105,6 +105,26 @@ const folders = [
     }
 ]
 
+const createaNewFolder = (path, name) => {
+    folders.push({
+        label: name,
+        explorer: true,
+        files: [],
+        subfolders: [],
+        tag: "",
+        icon: {
+            src: 'src/assets/folder.png',
+            alt: 'folder',
+        }
+    })
+
+    // console.log(folders)
+
+    const folder = folders.find(folder => folder.label === path)
+    folder.subfolders.push(name)
+    console.log('pasta criada com sucesso', folders)
+}
+
 // Configurando itens ao subarray de pastas da área de trabalho
 const workspaceFiles = []
 
@@ -133,4 +153,6 @@ const localFiles = folders.filter(folder => folder.tag === "Locais")
 
 // Adicionando icones a pasta da area de trabalho
 
-export { folders, workspaceFiles, taskbarFiles, favoritesFiles, localFiles, apps }
+export { folders, workspaceFiles, taskbarFiles, favoritesFiles, localFiles, apps, createaNewFolder
+
+ }

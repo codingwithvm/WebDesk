@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react'
-import { apps, favoritesFiles, folders, localFiles } from '../../data/folders'
+import { apps, createaNewFolder, favoritesFiles, folders, localFiles } from '../../data/folders'
 import './style.css'
 import Icon from '../Icon/Icon'
 
@@ -22,6 +22,8 @@ export default ({ title }) => {
     const [contentToShow, setContentToShow] = useState(datas)
     const [isZoomed, setIsZoomed] = useState(false)
     const [isClosed, setIsClosed] = useState(false)
+    const [showMenu, setShowMenu] = useState(false)
+    const [menuPosition, setMenuPosition] = useState({ x: 0, y: 0 })
 
     const handleMinimizeClick = () => {
         explorerRef.current.style.height = '50px'
@@ -83,43 +85,52 @@ export default ({ title }) => {
         setContentToShow(subfolderData)
     }
 
-    const backFolder = title => {
-        // Cria o camino
-        const backFolderPath = () => {
-            // Localiza último caractérer / do título do explorer
-            const lastBar = title.lastIndexOf('/')
-            // Cria o caminho selecionando o texto antes da /
-            const path = title.substring(0, lastBar)
+    const backFolderMiddlePath = title => {
+        // Localiza último caractérer / do título do explorer
+        const lastBar = title.lastIndexOf('/')
+        // Cria o caminho selecionando o texto antes da /
+        const path = title.substring(0, lastBar)
 
-            setExplorerTitle(path)
-    
-            // Se o caminho não for a raiz
-            if(path.lastIndexOf('/') !== -1) {
-                // Repete o processo
-                // Localiza último caractérer /
-                const middleBar = path.lastIndexOf('/')
-                // Cria o caminho selecionando o texto antes da / e soma 1 para não incluir
-                const middlePath = title.substring(middleBar+1, lastBar)
-    
-                return middlePath
-            } else {
-                return path
-            }
+        setExplorerTitle(path)
+    }
+
+    // Cria o camino
+    const backFolderPath = title => {
+        // Localiza último caractérer / do título do explorer
+        const lastBar = title.lastIndexOf('/')
+        // Cria o caminho selecionando o texto antes da /
+        const path = title.substring(0, lastBar)
+
+        // Se o caminho não for a raiz
+        if (path.lastIndexOf('/') !== -1) {
+            // Repete o processo
+            // Localiza último caractérer /
+            const middleBar = path.lastIndexOf('/')
+            // Cria o caminho selecionando o texto antes da / e soma 1 para não incluir
+            const middlePath = title.substring(middleBar + 1, lastBar)
+
+            return middlePath
+        } else {
+            return path
         }
+    }
 
+    const backFolder = title => {
         // Pesquisando pasta 
-        const result = folders.find(folder => folder.label === backFolderPath())
+        const result = folders.find(folder => folder.label === backFolderPath(title))
         // Listando subfolders
         const subfoldersData = []
 
+        backFolderMiddlePath(title)
+
         // Listando todas as pastas
-        for(const label of result.subfolders) {
+        for (const label of result.subfolders) {
             const file = folders.find(file => file.label === label)
             subfoldersData.push(file)
         }
 
         // Listando todos os aplicativos
-        for(const label of result.files) {
+        for (const label of result.files) {
             const file = apps.find(file => file.label === label)
             subfoldersData.push(file)
         }
@@ -128,6 +139,45 @@ export default ({ title }) => {
         setContentToShow(subfoldersData)
     }
 
+    const handleContextMenu = e => {
+        e.preventDefault()
+        // Mostra o menu
+        setShowMenu(true)
+        // Altera a posição do menu
+        setMenuPosition({ x: e.screenX, y: e.screenY })
+    }
+
+    const handleMenuClick = () => {
+        setShowMenu(false)
+    }
+
+    // Criar nova pasta
+    const handleNewFolderClick = (label) => {
+        const lastBar = label.lastIndexOf('/')
+        // retorna o label da pasta atual
+        const path = label.substring(lastBar + 1)
+
+        createaNewFolder(path, 'nova pasta')
+        const folderToRender = folders.find(folder => folder.label === path)
+
+        // Listando subfolders
+        const subfoldersData = []
+
+        // Listando todas as pastas
+        for (const label of folderToRender.subfolders) {
+            const file = folders.find(file => file.label === label)
+            subfoldersData.push(file)
+        }
+
+        // Listando todos os aplicativos
+        for (const label of folderToRender.files) {
+            const file = apps.find(file => file.label === label)
+            subfoldersData.push(file)
+        }
+
+        // Alternado body
+        setContentToShow(subfoldersData)
+    }
 
     if (isClosed) return null
 
@@ -181,7 +231,7 @@ export default ({ title }) => {
                         }
                     </ul>
                 </div>
-                <div className="explorer-content">
+                <div onContextMenu={handleContextMenu} className="explorer-content">
                     {
                         contentToShow.map(({ label, icon }) => (
                             <Icon key={label} text={label} imageSrc={icon.src} handleIconClick={() => handleIconClick(label)} />
@@ -189,6 +239,14 @@ export default ({ title }) => {
                     }
                 </div>
             </div>
+            {
+                showMenu && (
+                    <div className="custom-menu" style={{ top: menuPosition.y - 155, left: menuPosition.x - 280 }} onClick={handleMenuClick}>
+                        <div onClick={() => handleNewFolderClick(explorerTitle)}>Nova Pasta</div>
+                        <div>Novo Texto</div>
+                    </div>
+                )
+            }
         </div>
     )
 }
