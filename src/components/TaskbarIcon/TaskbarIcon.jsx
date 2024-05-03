@@ -35,7 +35,6 @@ export default ({ srcImage, alt, iconHanldleClick, explorer, file }) => {
                         {
                             previewWindow.length > 0 ? (
                                 previewWindow.map((name, index) => (
-                                    console.log(name),
                                     <li key={index}>{name}</li>
                                 ))
                             ) : (

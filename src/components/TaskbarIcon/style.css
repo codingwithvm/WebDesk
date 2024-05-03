@@ -32,13 +32,23 @@ img {
 }
 
 .preview-window {
-    cursor: default;
+    cursor: pointer;
     position: absolute;
-    background-color: aliceblue;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    border-radius: 8px;
     bottom: 80px;
     z-index: 2;
 }
 
 .preview-window> ul {
     list-style: none;
+}
+
+.preview-window> ul>li {
+    padding: 4px;
+}
+
+.preview-window> ul>li:hover {
+    background-color: #FF5F52;
 }
