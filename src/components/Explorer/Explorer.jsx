@@ -3,6 +3,7 @@ import { apps, favoritesFiles, folders, localFiles } from '../../data/folders'
 import './style.css'
 import Icon from '../Icon/Icon'
 
+
 export default ({ title }) => {
     // Encontrando pasta na lista atraves do titulo
     const folder = folders.find(folder => folder.label === title)
@@ -21,7 +22,6 @@ export default ({ title }) => {
     const [contentToShow, setContentToShow] = useState(datas)
     const [isZoomed, setIsZoomed] = useState(false)
     const [isClosed, setIsClosed] = useState(false)
-    const [prevFolder, setPrevFolder] = useState(null)
 
     const handleMinimizeClick = () => {
         explorerRef.current.style.height = '50px'
@@ -58,8 +58,6 @@ export default ({ title }) => {
         const result = folders.find(folder => folder.label === label)
         const subfolderData = []
 
-        setPrevFolder(result)
-
         // Listando todas as pastas da subpasta
         for (const data of result.subfolders) {
             const folder = folders.find(folder => folder.label === data)
@@ -86,23 +84,48 @@ export default ({ title }) => {
     }
 
     const backFolder = title => {
-        // Localiza último caractérer / do título do explorer
-        const lastBar = title.lastIndexOf('/')
-        // Cria o caminho selecionando o texto antes da /
-        const path = title.substring(0, lastBar)
+        // Cria o camino
+        const backFolderPath = () => {
+            // Localiza último caractérer / do título do explorer
+            const lastBar = title.lastIndexOf('/')
+            // Cria o caminho selecionando o texto antes da /
+            const path = title.substring(0, lastBar)
 
-        // Se o caminho não for a raiz
-        if(path.lastIndexOf('/') !== -1) {
-            // Repete o processo
-            // Localiza último caractérer /
-            const middleBar = path.lastIndexOf('/')
-            // Cria o caminho selecionando o texto antes da / e soma 1 para não incluir
-            const middlePath = title.substring(middleBar+1, lastBar)
-
-            return middlePath
-        } else {
-            return path
+            setExplorerTitle(path)
+    
+            // Se o caminho não for a raiz
+            if(path.lastIndexOf('/') !== -1) {
+                // Repete o processo
+                // Localiza último caractérer /
+                const middleBar = path.lastIndexOf('/')
+                // Cria o caminho selecionando o texto antes da / e soma 1 para não incluir
+                const middlePath = title.substring(middleBar+1, lastBar)
+    
+                return middlePath
+            } else {
+                return path
+            }
         }
+
+        // Pesquisando pasta 
+        const result = folders.find(folder => folder.label === backFolderPath())
+        // Listando subfolders
+        const subfoldersData = []
+
+        // Listando todas as pastas
+        for(const label of result.subfolders) {
+            const file = folders.find(file => file.label === label)
+            subfoldersData.push(file)
+        }
+
+        // Listando todos os aplicativos
+        for(const label of result.files) {
+            const file = apps.find(file => file.label === label)
+            subfoldersData.push(file)
+        }
+
+        // Alternado body
+        setContentToShow(subfoldersData)
     }
 
 
