@@ -11,7 +11,7 @@ export default ({ title }) => {
 
     // Localizando as subpastas atraves do label da pasta
     const datas = []
-    for(const label of subfolders) {
+    for (const label of subfolders) {
         const file = folders.find(file => file.label === label)
         datas.push(file)
     }
@@ -21,6 +21,7 @@ export default ({ title }) => {
     const [contentToShow, setContentToShow] = useState(datas)
     const [isZoomed, setIsZoomed] = useState(false)
     const [isClosed, setIsClosed] = useState(false)
+    const [prevFolder, setPrevFolder] = useState(null)
 
     const handleMinimizeClick = () => {
         explorerRef.current.style.height = '50px'
@@ -57,14 +58,16 @@ export default ({ title }) => {
         const result = folders.find(folder => folder.label === label)
         const subfolderData = []
 
+        setPrevFolder(result)
+
         // Listando todas as pastas da subpasta
-        for(const data of result.subfolders) {
+        for (const data of result.subfolders) {
             const folder = folders.find(folder => folder.label === data)
             subfolderData.push(folder)
         }
 
         // Listando todos os arquivos da subpasta
-        for(const data of result.files) {
+        for (const data of result.files) {
             const file = apps.find(app => app.label === data)
             subfolderData.push(file)
         }
@@ -72,14 +75,36 @@ export default ({ title }) => {
         // Alterando o titulo do explorer
         const currentTitle = explorerTitle
         // Raiz dos arquivos
-        if(result.label !== "Meu Computador") {
-            setExplorerTitle(currentTitle+'/'+result.label)
+        if (result.label !== "Meu Computador") {
+            setExplorerTitle(currentTitle + '/' + result.label)
         } else {
             setExplorerTitle(result.label)
         }
-            
+
+        // console.log(prevFolder)
         setContentToShow(subfolderData)
     }
+
+    const backFolder = title => {
+        // Localiza último caractérer / do título do explorer
+        const lastBar = title.lastIndexOf('/')
+        // Cria o caminho selecionando o texto antes da /
+        const path = title.substring(0, lastBar)
+
+        // Se o caminho não for a raiz
+        if(path.lastIndexOf('/') !== -1) {
+            // Repete o processo
+            // Localiza último caractérer /
+            const middleBar = path.lastIndexOf('/')
+            // Cria o caminho selecionando o texto antes da / e soma 1 para não incluir
+            const middlePath = title.substring(middleBar+1, lastBar)
+
+            return middlePath
+        } else {
+            return path
+        }
+    }
+
 
     if (isClosed) return null
 
@@ -96,7 +121,9 @@ export default ({ title }) => {
             <div className="header-options">
                 <div className="opt-buttons">
                     <div className="prev-button">
-                        <img src="./src/assets/back.png" alt="back" />
+                        <img src="./src/assets/back.png" alt="back" onClick={() => {
+                            backFolder(explorerTitle)
+                        }} />
                     </div>
                     <div className="next-button">
                         <img src="./src/assets/foward.png" alt="foward" />
@@ -133,8 +160,8 @@ export default ({ title }) => {
                 </div>
                 <div className="explorer-content">
                     {
-                        contentToShow.map(({label, icon})=> (
-                            <Icon key={label} text={label} imageSrc={icon.src} handleIconClick={() => handleIconClick(label)}/>
+                        contentToShow.map(({ label, icon }) => (
+                            <Icon key={label} text={label} imageSrc={icon.src} handleIconClick={() => handleIconClick(label)} />
                         ))
                     }
                 </div>

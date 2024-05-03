@@ -18,7 +18,7 @@ export default ({ onLogin }) => {
                 WebDesk
             </h1>
             <form onSubmit={handleFormSubmit}>
-                <input type="text" id="username" placeholder="Username" required />
+                <input type="text" id="username" placeholder="Username" required autoComplete='off' />
                 <input type="password" id="password" placeholder="Password" required />
                 <input type="submit" value=">" />
             </form>
