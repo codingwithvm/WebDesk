@@ -17,6 +17,7 @@ export default ({ title }) => {
     }
 
     const explorerRef = useRef(null)
+    const [explorerTitle, setExplorerTitle] = useState(title)
     const [contentToShow, setContentToShow] = useState(datas)
     const [isZoomed, setIsZoomed] = useState(false)
     const [isClosed, setIsClosed] = useState(false)
@@ -67,7 +68,10 @@ export default ({ title }) => {
             const file = apps.find(app => app.label === data)
             subfolderData.push(file)
         }
-        
+
+        // Alterando o titulo do explorer
+        const currentTitle = explorerTitle
+        setExplorerTitle(currentTitle+'/'+result.label)
         setContentToShow(subfolderData)
     }
 
@@ -76,7 +80,7 @@ export default ({ title }) => {
     return (
         <div ref={explorerRef} className="explorer">
             <div className="header">
-                <div className="title">{title}</div>
+                <div className="title">{explorerTitle}</div>
                 <div className="buttons">
                     <div className="minimize-button" onClick={handleMinimizeClick}></div>
                     <div className="zoom-button" onClick={handleZoomClick}></div>
