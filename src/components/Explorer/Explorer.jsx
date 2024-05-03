@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react'
-import { favoritesFiles, folders, localFiles } from '../../data/folders'
+import { apps, favoritesFiles, folders, localFiles } from '../../data/folders'
 import './style.css'
 import Icon from '../Icon/Icon'
 
@@ -16,9 +16,8 @@ export default ({ title }) => {
         datas.push(file)
     }
 
-    // console.log(datas)
-
     const explorerRef = useRef(null)
+    const [contentToShow, setContentToShow] = useState(datas)
     const [isZoomed, setIsZoomed] = useState(false)
     const [isClosed, setIsClosed] = useState(false)
 
@@ -50,6 +49,26 @@ export default ({ title }) => {
         setTimeout(() => {
             setIsClosed(true)
         }, 200)  // Ajustado aos mesmos 200ms da animação
+    }
+
+    const handleIconClick = label => {
+        // Resultado da busca pela pasta clicada
+        const result = folders.find(folder => folder.label === label)
+        const subfolderData = []
+
+        // Listando todas as pastas da subpasta
+        for(const data of result.subfolders) {
+            const folder = folders.find(folder => folder.label === data)
+            subfolderData.push(folder)
+        }
+
+        // Listando todos os arquivos da subpasta
+        for(const data of result.files) {
+            const file = apps.find(app => app.label === data)
+            subfolderData.push(file)
+        }
+        
+        setContentToShow(subfolderData)
     }
 
     if (isClosed) return null
@@ -104,8 +123,8 @@ export default ({ title }) => {
                 </div>
                 <div className="explorer-content">
                     {
-                        datas.map(({label, explorer, icon})=> (
-                            <Icon key={label} text={label} imageSrc={icon.src}/>
+                        contentToShow.map(({label, icon})=> (
+                            <Icon key={label} text={label} imageSrc={icon.src} handleIconClick={() => handleIconClick(label)}/>
                         ))
                     }
                 </div>

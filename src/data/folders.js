@@ -133,4 +133,4 @@ const localFiles = folders.filter(folder => folder.tag === "Locais")
 
 // Adicionando icones a pasta da area de trabalho
 
-export { folders, workspaceFiles, taskbarFiles, favoritesFiles, localFiles }
+export { folders, workspaceFiles, taskbarFiles, favoritesFiles, localFiles, apps }
