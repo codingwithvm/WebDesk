@@ -63,7 +63,7 @@ const folders = [
         label: "Downloads",
         explorer: true,
         files: [],
-        subfolders: [],
+        subfolders: ["Imagens"],
         tag: "Favoritos",
         icon: {
             src: 'src/assets/download-folder.png',
@@ -96,7 +96,7 @@ const folders = [
         label: "Explorador de Arquivos",
         explorer: true,
         files: [],
-        subfolders: [],
+        subfolders: ["Área de Trabalho", "Documentos", "Downloads", "Imagens"],
         tag: "",
         icon: {
             src: 'src/assets/folder.png',

@@ -71,7 +71,13 @@ export default ({ title }) => {
 
         // Alterando o titulo do explorer
         const currentTitle = explorerTitle
-        setExplorerTitle(currentTitle+'/'+result.label)
+        // Raiz dos arquivos
+        if(result.label !== "Meu Computador") {
+            setExplorerTitle(currentTitle+'/'+result.label)
+        } else {
+            setExplorerTitle(result.label)
+        }
+            
         setContentToShow(subfolderData)
     }
 
