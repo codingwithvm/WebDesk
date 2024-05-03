@@ -13,7 +13,7 @@ export default ({explorer, setExplorer}) => {
             <div className="taskbar-icons">
                 <div className="taskbar-icons-fixed">
                     {taskbarFiles.map((file, index) => (
-                        <TaskbarIcon key={index} srcImage={file.icon.src} alt={file.icon.alt} iconHanldleClick={() => {
+                        <TaskbarIcon key={index} explorer={explorer} file={file} srcImage={file.icon.src} alt={file.icon.alt} iconHanldleClick={() => {
                             if(file.explorer) {
                                 iconHanldleClick(file.label)
                             }

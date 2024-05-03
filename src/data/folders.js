@@ -51,7 +51,7 @@ const folders = [
     {
         label: "Área de Trabalho",
         explorer: true,
-        files: ["Terminal"],
+        files: [],
         subfolders: ["Meu Computador", "Lixeira"],
         tag: "Favoritos",
         icon: {
@@ -144,7 +144,8 @@ for (const label of folders[2].files) {
 const taskbarFiles = [
     folders[6],
     apps[1],
-    apps[2]
+    apps[2],
+    apps[0]
 ]
 
 const favoritesFiles = folders.filter(folder => folder.tag === "Favoritos")

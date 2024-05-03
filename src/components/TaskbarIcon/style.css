@@ -30,3 +30,15 @@ img {
     -webkit-filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.34));
     filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.34));
 }
+
+.preview-window {
+    cursor: default;
+    position: absolute;
+    background-color: aliceblue;
+    bottom: 80px;
+    z-index: 2;
+}
+
+.preview-window> ul {
+    list-style: none;
+}

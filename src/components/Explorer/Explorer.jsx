@@ -1,5 +1,12 @@
 import { useRef, useState } from 'react'
-import { apps, createaNewFolder, favoritesFiles, folders, getSubfoldersData, localFiles } from '../../data/folders'
+import { 
+    apps, 
+    createaNewFolder, 
+    favoritesFiles, 
+    folders, 
+    getSubfoldersData, 
+    localFiles 
+} from '../../data/folders'
 import './style.css'
 import Icon from '../Icon/Icon'
 
