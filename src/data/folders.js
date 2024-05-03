@@ -122,21 +122,20 @@ const createaNewFolder = (path, name) => {
 
     const folder = folders.find(folder => folder.label === path)
     folder.subfolders.push(name)
-    console.log('pasta criada com sucesso', folders)
 }
 
 // Configurando itens ao subarray de pastas da área de trabalho
 const workspaceFiles = []
 
 // Encontrado itens a partir do label
-for(const label of folders[2].subfolders) {
+for (const label of folders[2].subfolders) {
     const folder = folders.find(folder => folder.label === label)
 
     workspaceFiles.push(folder)
 }
 
 // Encontrando itens a partir do label
-for(const label of folders[2].files) {
+for (const label of folders[2].files) {
     const file = apps.find(file => file.label === label)
 
     workspaceFiles.push(file)
@@ -151,8 +150,32 @@ const taskbarFiles = [
 const favoritesFiles = folders.filter(folder => folder.tag === "Favoritos")
 const localFiles = folders.filter(folder => folder.tag === "Locais")
 
-// Adicionando icones a pasta da area de trabalho
 
-export { folders, workspaceFiles, taskbarFiles, favoritesFiles, localFiles, apps, createaNewFolder
+const getSubfoldersData = (folderToRender, folders, apps) => {
+    const subfoldersData = []
 
- }
+    // Listando todas as pastas
+    for (const label of folderToRender.subfolders) {
+        const file = folders.find(file => file.label === label)
+        subfoldersData.push(file)
+    }
+
+    // Listando todos os aplicativos
+    for (const label of folderToRender.files) {
+        const file = apps.find(file => file.label === label)
+        subfoldersData.push(file)
+    }
+
+    return subfoldersData
+}
+
+export {
+    folders, 
+    workspaceFiles, 
+    taskbarFiles, 
+    favoritesFiles, 
+    localFiles, 
+    apps, 
+    createaNewFolder,
+    getSubfoldersData
+}

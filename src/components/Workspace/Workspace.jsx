@@ -7,9 +7,14 @@ import './style.css'
 
 export default () => {
     const [showExplorer, setShowExplorer] = useState([])
+    const [workspaceFile, setWorkspaceFile] = useState(workspaceFiles)
 
     const handleIconClick = (title) => {
-        setShowExplorer([...showExplorer, <Explorer key={showExplorer.length} title={title} />])
+        setShowExplorer([...showExplorer, <Explorer key={showExplorer.length} title={title} changeState={changeState}/>])
+    }
+
+    const changeState = (newState) => {
+        setWorkspaceFile(newState)
     }
 
     return (
@@ -17,12 +22,12 @@ export default () => {
             <div className="background">
                 <div className="icons">
                     {
-                        workspaceFiles.map(file => {
-                            return <Icon key={file.label} text={file.label} imageSrc={file.icon.src} handleIconClick={() => {
+                        workspaceFile.map((file, index) => {
+                            return <Icon key={index} text={file.label} imageSrc={file.icon.src} handleIconClick={() => {
                                 if (file.explorer) {
                                     handleIconClick(file.label)
                                 }
-                            }} />
+                            }}/>
                         })
                     }
                 </div>

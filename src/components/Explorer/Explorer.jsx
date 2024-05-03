@@ -1,21 +1,14 @@
 import { useRef, useState } from 'react'
-import { apps, createaNewFolder, favoritesFiles, folders, localFiles } from '../../data/folders'
+import { apps, createaNewFolder, favoritesFiles, folders, getSubfoldersData, localFiles } from '../../data/folders'
 import './style.css'
 import Icon from '../Icon/Icon'
 
 
-export default ({ title }) => {
+export default ({ title, changeState }) => {
     // Encontrando pasta na lista atraves do titulo
     const folder = folders.find(folder => folder.label === title)
-    // Identificando as subpastas dessa pasta
-    const subfolders = folder.subfolders
-
-    // Localizando as subpastas atraves do label da pasta
-    const datas = []
-    for (const label of subfolders) {
-        const file = folders.find(file => file.label === label)
-        datas.push(file)
-    }
+    // Identificando as subpastas dessa past
+    const datas = getSubfoldersData(folder, folders, apps)
 
     const explorerRef = useRef(null)
     const [explorerTitle, setExplorerTitle] = useState(title)
@@ -58,19 +51,7 @@ export default ({ title }) => {
     const handleIconClick = label => {
         // Resultado da busca pela pasta clicada
         const result = folders.find(folder => folder.label === label)
-        const subfolderData = []
-
-        // Listando todas as pastas da subpasta
-        for (const data of result.subfolders) {
-            const folder = folders.find(folder => folder.label === data)
-            subfolderData.push(folder)
-        }
-
-        // Listando todos os arquivos da subpasta
-        for (const data of result.files) {
-            const file = apps.find(app => app.label === data)
-            subfolderData.push(file)
-        }
+        const subfolderData = getSubfoldersData(result, folders, apps)
 
         // Alterando o titulo do explorer
         const currentTitle = explorerTitle
@@ -119,21 +100,9 @@ export default ({ title }) => {
         // Pesquisando pasta 
         const result = folders.find(folder => folder.label === backFolderPath(title))
         // Listando subfolders
-        const subfoldersData = []
+        const subfoldersData = getSubfoldersData(result, folders, apps)
 
         backFolderMiddlePath(title)
-
-        // Listando todas as pastas
-        for (const label of result.subfolders) {
-            const file = folders.find(file => file.label === label)
-            subfoldersData.push(file)
-        }
-
-        // Listando todos os aplicativos
-        for (const label of result.files) {
-            const file = apps.find(file => file.label === label)
-            subfoldersData.push(file)
-        }
 
         // Alternado body
         setContentToShow(subfoldersData)
@@ -147,6 +116,7 @@ export default ({ title }) => {
         setMenuPosition({ x: e.screenX, y: e.screenY })
     }
 
+    // Mostrando o context menu
     const handleMenuClick = () => {
         setShowMenu(false)
     }
@@ -158,25 +128,17 @@ export default ({ title }) => {
         const path = label.substring(lastBar + 1)
 
         createaNewFolder(path, 'nova pasta')
+
         const folderToRender = folders.find(folder => folder.label === path)
-
-        // Listando subfolders
-        const subfoldersData = []
-
-        // Listando todas as pastas
-        for (const label of folderToRender.subfolders) {
-            const file = folders.find(file => file.label === label)
-            subfoldersData.push(file)
-        }
-
-        // Listando todos os aplicativos
-        for (const label of folderToRender.files) {
-            const file = apps.find(file => file.label === label)
-            subfoldersData.push(file)
-        }
+        const subfoldersData = getSubfoldersData(folderToRender, folders, apps)
 
         // Alternado body
         setContentToShow(subfoldersData)
+
+        // Mudando estado do workspace
+        if(path === "Área de Trabalho") {
+            changeState(getSubfoldersData(folderToRender, folders, apps))
+        }
     }
 
     if (isClosed) return null
@@ -233,8 +195,8 @@ export default ({ title }) => {
                 </div>
                 <div onContextMenu={handleContextMenu} className="explorer-content">
                     {
-                        contentToShow.map(({ label, icon }) => (
-                            <Icon key={label} text={label} imageSrc={icon.src} handleIconClick={() => handleIconClick(label)} />
+                        contentToShow.map(({ label, icon }, index) => (
+                            <Icon key={label + index} text={label} imageSrc={icon.src} handleIconClick={() => handleIconClick(label)} />
                         ))
                     }
                 </div>
