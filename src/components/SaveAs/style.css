@@ -49,3 +49,8 @@
     background-color: #FF5F52;
     color: white;
 }
+
+.save-as-footer>input:hover {
+    opacity: 80%;
+    cursor: pointer;
+}

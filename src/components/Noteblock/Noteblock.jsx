@@ -13,12 +13,18 @@ const NoteblockEditor = () => {
     }
 
     const handleCloseClick = () => {
-        noteblockRef.current.style.width = '400px'
-        noteblockRef.current.style.height = '250px'
-        noteblockRef.current.style.opacity = '0'
-        setTimeout(() => {
-            setNoteIsClosed(true)
-        }, 200)  // Ajustado aos mesmos 200ms da animação
+        // verifica se tem algo escrito
+        if (text.length > 0) {
+            const confirm = window.confirm('Deseja sair sem salvar ?')
+            if (confirm) {
+                noteblockRef.current.style.width = '400px'
+                noteblockRef.current.style.height = '250px'
+                noteblockRef.current.style.opacity = '0'
+                setTimeout(() => {
+                    setNoteIsClosed(true)
+                }, 200)  // Ajustado aos mesmos 200ms da animação
+            }
+        }
     }
 
     const handleFileClick = e => {
