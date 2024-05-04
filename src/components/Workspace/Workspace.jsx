@@ -4,7 +4,6 @@ import Icon from '../Icon/Icon'
 import Taskbar from '../Taskbar/Taskbar'
 import { workspaceFiles } from '../../data/folders'
 import './style.css'
-import NoteblockEditor from '../Noteblock/Noteblock'
 
 export default () => {
     const [showExplorer, setShowExplorer] = useState([])
@@ -37,7 +36,6 @@ export default () => {
             {showExplorer && showExplorer.map((explorer, index) => (
                 <div key={index}>{explorer}</div>
             ))}
-            <NoteblockEditor />
         </div>
     )
 }

@@ -9,6 +9,7 @@ import {
 } from '../../data/folders'
 import './style.css'
 import Icon from '../Icon/Icon'
+import NoteblockEditor from '../Noteblock/Noteblock'
 
 
 export default ({ title, changeState }) => {
@@ -23,6 +24,7 @@ export default ({ title, changeState }) => {
     const [isZoomed, setIsZoomed] = useState(false)
     const [isClosed, setIsClosed] = useState(false)
     const [showMenu, setShowMenu] = useState(false)
+    const [showEditor, setShowEditor] = useState(false)
     const [menuPosition, setMenuPosition] = useState({ x: 0, y: 0 })
 
     const handleMinimizeClick = () => {
@@ -148,6 +150,10 @@ export default ({ title, changeState }) => {
         }
     }
 
+    const handleNewTextFile = () => {
+        setShowEditor(true)
+    }
+
     if (isClosed) return null
 
     return (
@@ -212,8 +218,13 @@ export default ({ title, changeState }) => {
                 showMenu && (
                     <div className="custom-menu" style={{ top: menuPosition.y - 155, left: menuPosition.x - 280 }} onClick={handleMenuClick}>
                         <div onClick={() => handleNewFolderClick(explorerTitle)}>Nova Pasta</div>
-                        <div>Novo Texto</div>
+                        <div onClick={handleNewTextFile}>Novo Texto</div>
                     </div>
+                )
+            }
+            {
+                showEditor && (
+                    <NoteblockEditor />
                 )
             }
         </div>
