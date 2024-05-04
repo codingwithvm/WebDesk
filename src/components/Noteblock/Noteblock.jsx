@@ -5,6 +5,7 @@ import SaveAs from '../SaveAs/SaveAs'
 const NoteblockEditor = () => {
     const [noteIsClosed, setNoteIsClosed] = useState(false)
     const [showSubheader, setShowSubheader] = useState(false)
+    const [showSaveAs, setShowSaveAs] = useState(false)
     const [text, setText] = useState('')
     const noteblockRef = useRef(null)
 
@@ -12,17 +13,27 @@ const NoteblockEditor = () => {
         setText(event.target.value)
     }
 
+    const handleClickSave = () => {
+        setShowSaveAs(true)
+    }
+
     const handleCloseClick = () => {
+        const closeWitthEffect = () => {
+            noteblockRef.current.style.width = '400px'
+            noteblockRef.current.style.height = '250px'
+            noteblockRef.current.style.opacity = '0'
+            setTimeout(() => {
+                setNoteIsClosed(true)
+            }, 200)  // Ajustado aos mesmos 200ms da animação
+        }
+
+        closeWitthEffect()
+
         // verifica se tem algo escrito
         if (text.length > 0) {
             const confirm = window.confirm('Deseja sair sem salvar ?')
             if (confirm) {
-                noteblockRef.current.style.width = '400px'
-                noteblockRef.current.style.height = '250px'
-                noteblockRef.current.style.opacity = '0'
-                setTimeout(() => {
-                    setNoteIsClosed(true)
-                }, 200)  // Ajustado aos mesmos 200ms da animação
+                closeWitthEffect()
             }
         }
     }
@@ -35,6 +46,7 @@ const NoteblockEditor = () => {
 
     const handleSubheaderMenu = e => {
         e.stopPropagation()
+        setShowSubheader(!showSubheader)
     }
 
     if (noteIsClosed) return null
@@ -59,7 +71,7 @@ const NoteblockEditor = () => {
                                     <ul>
                                         <li key={1}>Novo</li>
                                         <li key={2}>Nova Janela</li>
-                                        <li key={3}>Salvar</li>
+                                        <li key={3} onClick={handleClickSave}>Salvar</li>
                                     </ul>
                                 )
                             }
@@ -71,7 +83,9 @@ const NoteblockEditor = () => {
                 </ul>
             </div>
             {
-                <SaveAs />
+                showSaveAs && (
+                    <SaveAs fileBody={text} />
+                )
             }
             <textarea
                 className="editor-textarea"
