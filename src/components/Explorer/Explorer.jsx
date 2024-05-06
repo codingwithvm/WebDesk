@@ -169,12 +169,12 @@ export default ({ title, changeState }) => {
             <div className="header-options">
                 <div className="opt-buttons">
                     <div className="prev-button">
-                        <img src="./src/assets/back.png" alt="back" onClick={() => {
+                        <img src="./assets/back.png" alt="back" onClick={() => {
                             backFolder(explorerTitle)
                         }} />
                     </div>
                     <div className="next-button">
-                        <img src="./src/assets/foward.png" alt="foward" />
+                        <img src="./assets/foward.png" alt="foward" />
                     </div>
                 </div>
                 <div className="search-item">

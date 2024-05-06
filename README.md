@@ -18,7 +18,7 @@ O WebDesk é uma aplicação web que simula uma área de trabalho virtual dentro
 
 ![Página de Login](https://imgur.com/z7dRR1Z)
 
-*Página de Login*
+*Página de Login, [login e senha 'root']*
 
 ![Área de Trabalho](https://imgur.com/xupoIxq)
 
@@ -28,6 +28,24 @@ O WebDesk é uma aplicação web que simula uma área de trabalho virtual dentro
 
 *Editor de Texto*
 
-## [Experimente a aplicação](#)
+## Instalação
 
-## [Visualizar Código Fonte](#)
+Para utilizar o projeto, siga as etapas:
+
+1. Clone o repositório.
+2. `npm install` para instalar as dependências.
+
+## Uso
+
+1. Execute o comando `npm run dev` para iniciar o servidor.
+2. Login e senha são `root`
+
+## Contribuição
+
+Contribuições são sempre bem vindas.
+
+## Contato
+
+vctormndes@gmail.com
+
+## [Experimente a aplicação](https://web-desk.vercel.app/)
