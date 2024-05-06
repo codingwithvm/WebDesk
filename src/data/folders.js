@@ -3,7 +3,7 @@ const apps = [
         label: "Terminal",
         explorer: false,
         icon: {
-            src: 'src/assets/terminal.png',
+            src: './assets/terminal.png',
             alt: 'terminal',
         },
         body: ''
@@ -12,7 +12,7 @@ const apps = [
         label: "Configurações",
         explorer: false,
         icon: {
-            src: 'src/assets/settings.png',
+            src: './assets/settings.png',
             alt: 'settings',
         },
         body: ''
@@ -21,7 +21,7 @@ const apps = [
         label: "Calculadora",
         explorer: false,
         icon: {
-            src: 'src/assets/calculator.png',
+            src: './assets/calculator.png',
             alt: 'calculator',
         },
         body: ''
@@ -36,7 +36,7 @@ const folders = [
         subfolders: ["Área de Trabalho", "Documentos", "Downloads", "Imagens"],
         tag: "Locais",
         icon: {
-            src: 'src/assets/computer.png',
+            src: './assets/computer.png',
             alt: 'computer',
         }
     },
@@ -47,7 +47,7 @@ const folders = [
         subfolders: [],
         tag: "",
         icon: {
-            src: 'src/assets/trash.png',
+            src: './assets/trash.png',
             alt: 'trash',
         }
     },
@@ -58,7 +58,7 @@ const folders = [
         subfolders: ["Meu Computador", "Lixeira"],
         tag: "Favoritos",
         icon: {
-            src: 'src/assets/desktop.png',
+            src: './assets/desktop.png',
             alt: 'desktop',
         }
     },
@@ -66,21 +66,21 @@ const folders = [
         label: "Downloads",
         explorer: true,
         files: [],
-        subfolders: ["Imagens"],
+        subfolders: [],
         tag: "Favoritos",
         icon: {
-            src: 'src/assets/download-folder.png',
+            src: './assets/download-folder.png',
             alt: 'download-folder',
         }
     },
     {
         label: "Documentos",
         explorer: true,
-        files: ["Terminal"],
+        files: [],
         subfolders: [],
         tag: "Favoritos",
         icon: {
-            src: 'src/assets/documents.png',
+            src: './assets/documents.png',
             alt: 'documents',
         }
     },
@@ -91,7 +91,7 @@ const folders = [
         subfolders: [],
         tag: "Favoritos",
         icon: {
-            src: 'src/assets/images.png',
+            src: './assets/images.png',
             alt: 'images',
         }
     },
@@ -102,7 +102,7 @@ const folders = [
         subfolders: ["Área de Trabalho", "Documentos", "Downloads", "Imagens"],
         tag: "",
         icon: {
-            src: 'src/assets/folder.png',
+            src: './assets/folder.png',
             alt: 'folder',
         }
     }
@@ -116,7 +116,7 @@ const createaNewFolder = (path, name) => {
         subfolders: [],
         tag: "",
         icon: {
-            src: 'src/assets/folder.png',
+            src: './assets/folder.png',
             alt: 'folder',
         }
     })
@@ -135,7 +135,7 @@ const createNewFile = file => {
             label,
             explorer: false,
             icon: {
-                src: 'src/assets/documents.png',
+                src: './assets/documents.png',
                 alt: 'documents',
             },
             body
