@@ -16,15 +16,15 @@ O WebDesk é uma aplicação web que simula uma área de trabalho virtual dentro
 
 ## Capturas de Tela
 
-![Página de Login](https://imgur.com/z7dRR1Z)
+![Página de Login](https://i.imgur.com/z7dRR1Z.png)
 
 *Página de Login, [login e senha 'root']*
 
-![Área de Trabalho](https://imgur.com/xupoIxq)
+![Área de Trabalho](https://i.imgur.com/xupoIxq.png)
 
 *Ambiente de Área de Trabalho*
 
-![Bloco de Notas](https://imgur.com/gI3YbGp)
+![Bloco de Notas](https://i.imgur.com/gI3YbGp.png)
 
 *Editor de Texto*
 
