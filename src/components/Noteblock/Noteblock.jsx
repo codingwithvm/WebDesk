@@ -2,7 +2,7 @@ import { useRef, useState } from 'react'
 import './style.css'
 import SaveAs from '../SaveAs/SaveAs'
 
-const NoteblockEditor = () => {
+const NoteblockEditor = ({path}) => {
     const [noteIsClosed, setNoteIsClosed] = useState(false)
     const [showSubheader, setShowSubheader] = useState(false)
     const [showSaveAs, setShowSaveAs] = useState(false)
@@ -84,7 +84,7 @@ const NoteblockEditor = () => {
             </div>
             {
                 showSaveAs && (
-                    <SaveAs fileBody={text} />
+                    <SaveAs fileBody={text} path={path}/>
                 )
             }
             <textarea

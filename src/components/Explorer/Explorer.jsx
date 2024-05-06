@@ -224,7 +224,7 @@ export default ({ title, changeState }) => {
             }
             {
                 showEditor && (
-                    <NoteblockEditor />
+                    <NoteblockEditor path={explorerTitle} />
                 )
             }
         </div>

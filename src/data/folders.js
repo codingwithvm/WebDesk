@@ -5,7 +5,8 @@ const apps = [
         icon: {
             src: 'src/assets/terminal.png',
             alt: 'terminal',
-        }
+        },
+        body: ''
     },
     {
         label: "Configurações",
@@ -13,7 +14,8 @@ const apps = [
         icon: {
             src: 'src/assets/settings.png',
             alt: 'settings',
-        }
+        },
+        body: ''
     },
     {
         label: "Calculadora",
@@ -21,7 +23,8 @@ const apps = [
         icon: {
             src: 'src/assets/calculator.png',
             alt: 'calculator',
-        }
+        },
+        body: ''
     }
 ]
 
@@ -73,7 +76,7 @@ const folders = [
     {
         label: "Documentos",
         explorer: true,
-        files: [],
+        files: ["Terminal"],
         subfolders: [],
         tag: "Favoritos",
         icon: {
@@ -124,6 +127,29 @@ const createaNewFolder = (path, name) => {
     folder.subfolders.push(name)
 }
 
+const createNewFile = file => {
+    const { label, body, type, path } = file
+
+    if (type === "text") {
+        const newFile = {
+            label,
+            explorer: false,
+            icon: {
+                src: 'src/assets/documents.png',
+                alt: 'documents',
+            },
+            body
+        }
+
+        apps.push(newFile)
+        const folder = folders.find(folder => folder.label === path)
+        folder.files.push(label+'.txt')
+
+        console.log(apps)
+        console.log(folder)
+    }
+}
+
 // Configurando itens ao subarray de pastas da área de trabalho
 const workspaceFiles = []
 
@@ -171,12 +197,13 @@ const getSubfoldersData = (folderToRender, folders, apps) => {
 }
 
 export {
-    folders, 
-    workspaceFiles, 
-    taskbarFiles, 
-    favoritesFiles, 
-    localFiles, 
-    apps, 
+    folders,
+    workspaceFiles,
+    taskbarFiles,
+    favoritesFiles,
+    localFiles,
+    apps,
     createaNewFolder,
-    getSubfoldersData
+    getSubfoldersData,
+    createNewFile
 }
